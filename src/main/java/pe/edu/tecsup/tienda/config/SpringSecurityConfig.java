@@ -31,6 +31,7 @@ public class SpringSecurityConfig    {
 //	    return new BCryptPasswordEncoder();	// Algoritmo BCrypt
     }
 
+    // https://dev.to/pryhmez/implementing-spring-security-6-with-spring-boot-3-a-guide-to-oauth-and-jwt-with-nimbus-for-authentication-2lhf
     // https://spring.io/guides/gs/securing-web
     @Bean
     public UserDetailsService userDetailsServiceBean() throws Exception {
