@@ -10,6 +10,7 @@ import pe.edu.tecsup.tienda.entities.Producto;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  *
@@ -38,6 +39,27 @@ public class ProductoServiceTest {
 	
 	}
 
+	@Test
+	void testFindById() {
+
+		Producto prod = null;
+		Long ID_BUSCAR = 1L;
+		String NOMBRE_ESPERADO = "Intel Core I7";
+		String DESCRIPCION_ESPERADO = "Procesador Intel Core I7-8700 Lga 1151 8va";
+		Double PRECIO_ESPERADO = 1479.99;
+
+		try {
+			prod = productoService.findById(ID_BUSCAR);
+		} catch (Exception e) {
+			fail("Exception " + e.getMessage());
+		}
+
+		// Test validation..!
+		assertEquals(NOMBRE_ESPERADO, prod.getNombre());
+		assertEquals(DESCRIPCION_ESPERADO, prod.getDescripcion());
+		assertEquals(PRECIO_ESPERADO, prod.getPrecio());
+
+	}
 	/**
 	 *  Test busqueda de productos por nombre
 	 * @throws Exception
