@@ -10,10 +10,12 @@ import pe.edu.tecsup.tienda.repositories.UsuarioRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
-	
+
+	public UserDetailsServiceImpl(UsuarioRepository usuarioRepository) {
+		this.usuarioRepository = usuarioRepository;
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) 
 			throws UsernameNotFoundException {

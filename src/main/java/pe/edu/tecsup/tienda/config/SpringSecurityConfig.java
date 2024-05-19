@@ -33,7 +33,7 @@ class RawPasswordEncoder implements PasswordEncoder {
 */
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfig {
+public class SpringSecurityConfig  {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -82,26 +82,24 @@ public class SpringSecurityConfig {
 
         http
                 // Configure authorizations
-                .authorizeHttpRequests((requests) -> requests.requestMatchers("/" , "/**").permitAll()
-//		        .requestMatchers("/productos/**").authenticated()
+                .authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/" , "/webjars/**", "/css/**","/error/**").permitAll()
+		        .requestMatchers("/productos/**").authenticated()
 //		        .requestMatchers("/admin/**").hasAnyAuthority("Administrador")
                 )
                 // Change login
                 .formLogin((form) -> form
-                        .loginPage("/login")  // la peticion para iniciar sesion
                         .loginProcessingUrl("/authenticate")
-                        .defaultSuccessUrl("/")
-                        .failureUrl("/login?error")
-                        .usernameParameter("username").passwordParameter("password")
+                        .loginPage("/login").permitAll()
                 )
-                // Change logout
+                //*
                 .logout((logout) -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
                 )
                 // Change csrf
                 .csrf( (csrf) -> csrf.disable());
-
+                //*/
         return http.build();
     }
     //*/
